@@ -1,6 +1,6 @@
-# laravel-pubsub
+# lumen-pubsub
 
-A Pub-Sub abstraction for Laravel.
+A Pub-Sub abstraction for Laravel Lumen.
 
 [![Author](http://img.shields.io/badge/author-@superbalist-blue.svg?style=flat-square)](https://twitter.com/superbalist)
 [![Build Status](https://img.shields.io/travis/Superbalist/laravel-pubsub/master.svg?style=flat-square)](https://travis-ci.org/Superbalist/laravel-pubsub)
@@ -8,7 +8,7 @@ A Pub-Sub abstraction for Laravel.
 [![Packagist Version](https://img.shields.io/packagist/v/superbalist/laravel-pubsub.svg?style=flat-square)](https://packagist.org/packages/superbalist/laravel-pubsub)
 [![Total Downloads](https://img.shields.io/packagist/dt/superbalist/laravel-pubsub.svg?style=flat-square)](https://packagist.org/packages/superbalist/laravel-pubsub)
 
-This package is a wrapper bridging [php-pubsub](https://github.com/Superbalist/php-pubsub) into Laravel.
+This package is a wrapper bridging [php-pubsub](https://github.com/Superbalist/php-pubsub) into Laravel Lumen.
 
 For **Laravel 4** support, use the package https://github.com/Superbalist/laravel4-pubsub
 
@@ -22,7 +22,7 @@ The following adapters are supported:
 ## Installation
 
 ```bash
-composer require superbalist/laravel-pubsub
+composer require jezzdk/lumen-pubsub
 ```
 
 The package has a default configuration which uses the following environment variables.
@@ -39,28 +39,18 @@ GOOGLE_CLOUD_PROJECT_ID=your-project-id-here
 GOOGLE_CLOUD_KEY_FILE=path/to/your/gcloud-key.json
 ```
 
-To customize the configuration file, publish the package configuration using Artisan.
+To customize the configuration file, copy the package configuration into your project.
 ```bash
-php artisan vendor:publish --provider="Superbalist\LaravelPubSub\PubSubServiceProvider"
+cp vendor/jezzdk/lumen-pubsub/config/pubsub.php config/pubsub.php
 ```
 
-You can then edit the generated config at `app/config/pubsub.php`.
+You can then edit the generated config at `config/pubsub.php`.
 
-Register the service provider in app.php
+Register the service provider in bootstrap/app.php
 ```php
-'providers' => [
-    // ...
-    Superbalist\LaravelPubSub\PubSubServiceProvider::class,
-]
+$app->register(Superbalist\LaravelPubSub\PubSubServiceProvider::class);
 ```
 
-Register the facade in app.php
-```php
-'aliases' => [
-    // ...
-    'PubSub' => Superbalist\LaravelPubSub\PubSubFacade::class,
-]
-```
 
 ## Kafka Adapter Installation
 
